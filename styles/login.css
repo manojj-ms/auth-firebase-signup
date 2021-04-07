@@ -1,0 +1,22 @@
+.allinputs {
+    padding: 8px;
+    }
+    
+    .iconMarginCorrection {
+    padding-right: 5px;
+    padding-left: 5px;
+    }
+    
+    .submit-button {
+    margin: 8px;
+    }
+    
+    .cardAlignment {
+    display: flex;
+    flex-direction: column;
+    }
+.inputContainers {
+        min-width: 35vw;
+        justify-content: center;
+        display: flex;
+         }
