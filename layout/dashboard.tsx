@@ -3,6 +3,7 @@ import React from 'react'
 import { Layout, Menu } from 'antd';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 
 
 
@@ -25,11 +26,11 @@ const { SubMenu } = Menu;
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} className="pt-10">
      
       <Menu.Item key="1" icon={<UserOutlined />}>
-      <a href="/dashboard/product">Products</a>
+      <Link href="/dashboard/product">Products</Link>
       </Menu.Item>
         
         <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-        <a href="/dashboard/order">Orders</a>
+        <Link href="/dashboard/order">Orders</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<UploadOutlined />}>
         Category
