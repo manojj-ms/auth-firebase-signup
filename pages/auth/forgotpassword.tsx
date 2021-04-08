@@ -1,17 +1,17 @@
 import React from 'react';
 import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
 import Icon from "@ant-design/icons";
-import Link from "next/link"
+import  Link  from 'next/link';
 
  
   const login = () =>
 {   
   return (
-  <div className="px-80 py-52 ">
+  <div className="px-80 py-52">
      <Row gutter={16}>
           <Col>
             <Card
-              title="Dealer Management System -Login"
+              title="Dealer Management System -Forgotpassword"
               style={{ width: 400 }}
             >
               <Row className="inputContainers">
@@ -28,37 +28,22 @@ import Link from "next/link"
                   
                 />
               </Row>
-              <Row className="inputContainers">
-                <Input.Password
-                  className="allinputs"
-                  placeholder="Password"
-                  prefix={
-                    <Icon
-                      type="lock"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                      className="iconMarginCorrection"
-                    />
-                  }
-            
-                />
-              </Row>
+              
               <Row className="inputContainers">
                 <Col>
                   <Button
                     type="primary"
                     className="submit-button"
-                  
                     >
-                    Login
+                    Send Resetlink
                   </Button>
                 </Col>
                 <Col>
-                <Link href ="forgotpassword">
+                <Link href= "login">
                   <Button
-                    className="submit-button"
-                  
-                    >
-                      Forgot Password
+                
+                    className="submit-button">
+                     Back to login
                     </Button>
                     </Link>
                    </Col>

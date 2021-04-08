@@ -1,6 +1,6 @@
 import { useState } from "react"
 import React from 'react'
-import { Layout, Menu } from 'antd';
+import { Layout, Menu ,Avatar} from 'antd';
 import { UploadOutlined, UserOutlined, VideoCameraOutlined } from '@ant-design/icons';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
@@ -26,20 +26,22 @@ const { SubMenu } = Menu;
       <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']} className="pt-10">
      
       <Menu.Item key="1" icon={<UserOutlined />}>
-      <Link href="/dashboard/product">Products</Link>
+      <Link href="/dashboard/products">Products</Link>
       </Menu.Item>
         
         <Menu.Item key="2" icon={<VideoCameraOutlined />}>
         <Link href="/dashboard/order">Orders</Link>
         </Menu.Item>
         <Menu.Item key="3" icon={<UploadOutlined />}>
-        Category
+        <Link href="/dashboard/category">Category</Link>
         </Menu.Item>
+        
       </Menu>
     </Sider>
     <Layout>
-      <Header className=" text-right">
-        <span className=' text-white'>Superadmin</span>
+      <Header className=" text-right bg-white">
+      <Avatar>S</Avatar>
+        <span className=' text-black'>Superadmin</span>
         </Header>
       <Content style={{ margin: '24px 16px 0' }}>
         <div className="site-layout-background" style={{ minHeight: 569 }}>

@@ -8,43 +8,37 @@ const dataSource = [{
     key: '1',
     id:'1',
     productname: 'cards',
-    paymentstatus: "Success",
-    created_at:"apr 1",
+    
   },
   {
     key: '2',
     id:'2',
     productname: 'cards',
-    paymentstatus: "Fail",
-    created_at:"apr 1",
+    
   },
   {
     key: '3',
     id:'3',
     productname: 'cards',
-    paymentstatus: "Success",
-    created_at:"apr 1",
+    
   },
   {
     key: '4',
     id:'4',
     productname: 'cards',
-    paymentstatus: "success",
-    created_at:"apr 1",
+    
   },
   {
     key: '5',
     id:'5',
     productname: 'cards',
-    paymentstatus: "success",
-    created_at:"apr 1",
+    
   },
   {
     key: '6',
     id:'6',
     productname: 'cards',
-    paymentstatus: "success",
-    created_at:"apr 1",
+    
   },
 ];
   
@@ -56,16 +50,8 @@ const dataSource = [{
   title: 'ProductName',
   dataIndex: 'productname',
   key: 'productname',
-}, {
-  title: 'Paymentstatus',
-  dataIndex: 'paymentstatus',
-  key: 'paymentstatus',
 },
-{
-  title: 'Created_at',
-  dataIndex: 'created_at',
-  key: 'created_at',
-},
+
 {
   title: 'Action',
   dataIndex: '',
@@ -79,15 +65,14 @@ const dataSource = [{
       </Space>
     );
   }
-},
-];
-  const orders= () => {
+},];
+  const category= () => {
       return(
           <div>
-<Table dataSource={dataSource} columns={columns} className="pt-5 p-6 w-auto space-x-6 content-center" />
+    <Table dataSource={dataSource} columns={columns} className="pt-5 p-6 w-auto space-x-8 content-center" />
           </div>
       )
   }
   
 
-  export default (orders)
+  export default (category)
