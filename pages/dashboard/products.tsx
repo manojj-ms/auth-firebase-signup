@@ -53,12 +53,15 @@ const dataSource = [{
   title: 'Id',
   dataIndex: 'id',
   key: 'id',
-  sorter: true,
+  sorter: (a, b) => a.id - b.id,
 }, {
+  
   title: 'Name',
   dataIndex: 'name',
   key: 'name',
-  sorter: true,
+ sorter: (a, b) => a.name.length - b.name.length,
+    sortDirections: ['descend','ascend'],
+  
 }, {
   title: 'Category',
   dataIndex: 'category',

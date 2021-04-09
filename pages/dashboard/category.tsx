@@ -46,7 +46,7 @@ const dataSource = [{
   title: 'Id',
   dataIndex: 'id',
   key: 'id',
-  sorter:true,
+  sorter: (a, b) => a.id - b.id,
 }, {
   title: 'ProductName',
   dataIndex: 'productname',
