@@ -1,7 +1,6 @@
 import React from 'react';
 import { Table, Tag, Space, Button } from 'antd';
 
-
 const dataSource = [{
    key: '1',
    id:'1',
@@ -53,7 +52,7 @@ const dataSource = [{
 ];
   
 
-const columns= [
+const columns = [
      {
        title:'id',
        dataIndex:'id',
@@ -121,7 +120,7 @@ function onChange( filters, sorter) {
 const sort = () => {
     return(
         <div>
-            <Table dataSource={dataSource} onChange={onChange} columns ={columns}  className="pt-5 p-6 w-auto content-center" />
+            <Table dataSource={dataSource} onChange={onChange} columns={columns}  className="pt-5 p-6 w-auto content-center" />
         </div>
     )
 }
