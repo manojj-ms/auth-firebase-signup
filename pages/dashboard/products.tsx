@@ -29,7 +29,7 @@ const dataSource = [{
     key: '4',
     id:'4',
     name: 'John',
-    category: "cards",
+    category: "Banners",
     created_at:"apr 1",
   },
   {
@@ -43,23 +43,30 @@ const dataSource = [{
     key: '6',
     id:'6',
     name: 'John',
-    category: "cards",
+    category: "Banners",
     created_at:"apr 1",
   },
 ];
   
   const columns = [{
+   
   title: 'Id',
   dataIndex: 'id',
   key: 'id',
+  sorter: true,
 }, {
   title: 'Name',
   dataIndex: 'name',
   key: 'name',
+  sorter: true,
 }, {
   title: 'Category',
   dataIndex: 'category',
   key: 'category',
+  filters: [
+    { text: 'Cards', value: 'cards' },
+    { text: 'Banners', value: 'banners' },
+  ],
 },
 {
   title: 'Created_at',
@@ -79,13 +86,16 @@ const dataSource = [{
       </Space>
     );
   }
+
 },
 ];
+
   const products= () => {
       return(
           <div>
 <Table dataSource={dataSource} columns={columns} className="pt-5 p-6 w-auto content-center" />
           </div>
+         
       )
   }
   

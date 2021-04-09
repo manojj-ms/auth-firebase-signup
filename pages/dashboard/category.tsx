@@ -46,10 +46,12 @@ const dataSource = [{
   title: 'Id',
   dataIndex: 'id',
   key: 'id',
+  sorter:true,
 }, {
   title: 'ProductName',
   dataIndex: 'productname',
   key: 'productname',
+  
 },
 
 {
