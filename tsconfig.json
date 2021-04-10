@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/dashboard/order.jsx"  ],
+, "pages/dashboard/order.tsx", "pages/dashboard/category.tsx"  ],
   "exclude": [
     "node_modules"
   ]

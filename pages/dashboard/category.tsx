@@ -63,38 +63,12 @@ const columns= [
 
 
     {
-      title: 'ProductName',
-      dataIndex: 'productname',
-      key:'productname',
-      filters: [
-        {
-          text: 'cards',
-          value: 'cards',
-        },
-        {
-          text: 'banner',
-          value: 'banner',
-        },
-        
-        
-      ],
-      // specify the condition of filtering result
-      // here is that finding the name started with `value`
-      onFilter: (value, record) => record.productname.indexOf(value) === 0,
-      sorter: (a, b) => a.productname.length - b.productname.length,
-      sortDirections: ['descend','ascend'],
+      title: 'Name',
+      dataIndex: 'name',
+      key:'name',
+      
     },
-    
-    {
-      title:'Paymentstatus',
-      dataIndex:'paymentstatus',
-      key:'paymentstatus',
-    },
-    {
-        title:'Created_at',
-        dataIndex:'created_at',
-        key:'created_at',
-    },
+  
     {
       title: 'Action',
       dataIndex: '',
@@ -114,8 +88,8 @@ const columns= [
 
 
 
-function onChange( filters, sorter) {
-  console.log('params', filters, sorter);
+function onChange(  sorter) {
+  console.log('params',sorter);
 }
 
 const sort = () => {

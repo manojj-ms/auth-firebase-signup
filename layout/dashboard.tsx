@@ -35,9 +35,6 @@ const { SubMenu } = Menu;
         <Menu.Item key="3" icon={<UploadOutlined />}>
         <Link href="/dashboard/category">Category</Link>
         </Menu.Item>
-        <Menu.Item key="3" icon={<UploadOutlined />}>
-        <Link href="/dashboard/dummy">Category</Link>
-        </Menu.Item>
         
         
       </Menu>
