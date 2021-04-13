@@ -3,42 +3,43 @@ import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
 import Icon from "@ant-design/icons";
 import Link from "next/link"
 import {useState} from 'react'
+
  
-  const login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const signInWithEmailAndPasswordHandler = 
-          (event,email, password) => {
-              event.preventDefault();
-  };
-
-    const onChangeHandler = (event) => {
-        const {name, value} = event.currentTarget;
-
-        if(name === 'userEmail') {
-            setEmail(value);
-        }
-        else if(name === 'userPassword'){
-          setPassword(value);
-        }
+const Register = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const createUserWithEmailAndPasswordHandler = (event, email, password) => {
+      event.preventDefault();
+      setEmail("");
+      setPassword("");
+     
     };
+    const onChangeHandler = event => {
+      const { name, value } = event.currentTarget;
+      if (name === "userEmail") {
+        setEmail(value);
+      } else if (name === "userPassword") {
+        setPassword(value);
+      }
+    };  
 
+    
 
-return (
+  return (
   <div className="px-80 py-52 ">
      <Row gutter={16}>
           <Col>
             <Card
-              title="Dealer Management System -Login"
+              title="Dealer Management System -Register"
               style={{ width: 400 }}
             >
               <Row className="inputContainers">
                 <Input
                   className="allinputs"
+                  type='text'
+                  
                   placeholder="Email Address"
-                  value={email}
-
+                  id="userEmail"
                   prefix={
                     <Icon
                       type="user"
@@ -46,15 +47,15 @@ return (
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange = {(event) => onChangeHandler(event)}
+                  onChange={event => onChangeHandler(event)}
                 />
               </Row>
               <Row className="inputContainers">
                 <Input.Password
                   className="allinputs"
-                  value={password}
                   placeholder="Password"
-           
+                
+                  id="userPassword"
 
                   prefix={
                     <Icon
@@ -63,36 +64,46 @@ return (
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange = {(event) => onChangeHandler(event)}
+                  onChange={event => onChangeHandler(event)}
+                />
+              </Row>
+              <Row className="inputContainers">
+                <Input.Password
+                  className="allinputs"
+                  placeholder="Confirm Password"
+                  id="userPassword"
+                  prefix={
+                    <Icon
+                      type="lock"
+                      style={{ color: "rgba(0,0,0,.25)" }}
+                      className="iconMarginCorrection"
+                    />
+                  }
+                  onChange={event => onChangeHandler(event)}
                 />
               </Row>
               <Row className="inputContainers">
                 <Col>
-                <Link href="dashboard/prdocuts">
                   <Button
                     type="primary"
                     className="submit-button"
-                   >
-                    Login
+                    onClick={event => {
+                        createUserWithEmailAndPasswordHandler(event, email, password);
+                      }}
+                    >
+                   Register
                   </Button>
-                  </Link>
                 </Col>
                 <Col>
-                <Link href ="forgotpassword">
+                <Link href ="login">
                   <Button
                     className="submit-button"
                   
                     >
-                      Forgot Password
+                      Back to login 
                     </Button>
                     </Link>
                    </Col>
-                   <Row>
-                    <Link href='register'>
-                      Create new account
-                      ? 
-                    </Link>
-                   </Row>
               </Row>
             </Card>
           </Col>
@@ -100,5 +111,5 @@ return (
   </div>
       )
     }
-
-export default (login)  
+    
+export default (Register)  
