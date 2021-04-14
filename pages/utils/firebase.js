@@ -4,12 +4,12 @@ import "firebase/auth";
 import "firebase/database";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCrxWach3gs9gIjzjS0CJfYuuOYuFtQlDo",
-    authDomain: "kanishka-cards.firebaseapp.com",
-    projectId: "kanishka-cards",
-    storageBucket: "kanishka-cards.appspot.com",
-    messagingSenderId: "781017416950",
-    appId: "1:781017416950:web:059101ed97721ea97458d7"
+  apiKey: "AIzaSyDh_UbnleyALjhhHsG26dOOSMklRR-TW1A",
+  authDomain: "kanishka-cards-31c74.firebaseapp.com",
+  projectId: "kanishka-cards-31c74",
+  storageBucket: "kanishka-cards-31c74.appspot.com",
+  messagingSenderId: "855488286677",
+  appId: "1:855488286677:web:8aec01e9348205a44cb75c"
   };
   export const app = firebase.initializeApp(firebaseConfig);
   export const db = app.database();
