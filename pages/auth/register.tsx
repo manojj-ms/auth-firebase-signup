@@ -3,11 +3,13 @@ import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
 import Icon from "@ant-design/icons";
 import Link from "next/link"
 import {useState} from 'react'
-
+import firebase from '../utils/firebase-config';
  
 
 const register =() =>{
   
+console.log(firebase.name);
+console.log(firebase.database());
   return (
    
   <div className="px-80 py-52 ">

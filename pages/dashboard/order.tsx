@@ -1,6 +1,5 @@
 import React from 'react';
 import { Table, Tag, Space, Button } from 'antd';
-import {db} from '../utils/firebase'
 const dataSource = [{
    key: '1',
    id:'1',
