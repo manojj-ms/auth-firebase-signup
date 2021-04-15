@@ -5,27 +5,11 @@ import Link from "next/link"
 import {useState} from 'react'
 
  
-const Register = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const createUserWithEmailAndPasswordHandler = (event, email, password) => {
-      event.preventDefault();
-      setEmail("");
-      setPassword("");
-     
-    };
-    const onChangeHandler = event => {
-      const { name, value } = event.currentTarget;
-      if (name === "userEmail") {
-        setEmail(value);
-      } else if (name === "userPassword") {
-        setPassword(value);
-      }
-    };  
 
-    
-
+const register =() =>{
+  
   return (
+   
   <div className="px-80 py-52 ">
      <Row gutter={16}>
           <Col>
@@ -37,41 +21,36 @@ const Register = () => {
                 <Input
                   className="allinputs"
                   type='text'
-                  
                   placeholder="Email Address"
-                  id="userEmail"
-                  prefix={
+               prefix={
                     <Icon
                       type="user"
                       style={{ color: "rgba(0,0,0,.25)" }}
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange={event => onChangeHandler(event)}
+                  
                 />
               </Row>
               <Row className="inputContainers">
                 <Input.Password
                   className="allinputs"
                   placeholder="Password"
-                
-                  id="userPassword"
-
-                  prefix={
+            prefix={
                     <Icon
                       type="lock"
                       style={{ color: "rgba(0,0,0,.25)" }}
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange={event => onChangeHandler(event)}
+               
                 />
               </Row>
               <Row className="inputContainers">
                 <Input.Password
                   className="allinputs"
                   placeholder="Confirm Password"
-                  id="userPassword"
+                 
                   prefix={
                     <Icon
                       type="lock"
@@ -79,7 +58,7 @@ const Register = () => {
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange={event => onChangeHandler(event)}
+            
                 />
               </Row>
               <Row className="inputContainers">
@@ -87,9 +66,7 @@ const Register = () => {
                   <Button
                     type="primary"
                     className="submit-button"
-                    onClick={event => {
-                        createUserWithEmailAndPasswordHandler(event, email, password);
-                      }}
+                   
                     >
                    Register
                   </Button>
@@ -112,4 +89,4 @@ const Register = () => {
       )
     }
     
-export default (Register)  
+export default (register)  

@@ -1,32 +1,13 @@
 import React from 'react';
 import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
 import Icon from "@ant-design/icons";
-import Link from "next/link"
-import {useState} from 'react'
+import  Link  from 'next/link';
+
  
-  const login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
-  const signInWithEmailAndPasswordHandler = 
-          (event,email, password) => {
-              event.preventDefault();
-  };
-
-    const onChangeHandler = (event) => {
-        const {name, value} = event.currentTarget;
-
-        if(name === 'userEmail') {
-            setEmail(value);
-        }
-        else if(name === 'userPassword'){
-          setPassword(value);
-        }
-    };
-
-
-return (
-  <div className="px-80 py-52 ">
+  const login = () =>
+{   
+  return (
+  <div className="px-80 py-52">
      <Row gutter={16}>
           <Col>
             <Card
@@ -37,8 +18,6 @@ return (
                 <Input
                   className="allinputs"
                   placeholder="Email Address"
-                  value={email}
-
                   prefix={
                     <Icon
                       type="user"
@@ -46,52 +25,44 @@ return (
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange = {(event) => onChangeHandler(event)}
+                  
                 />
               </Row>
               <Row className="inputContainers">
-                <Input.Password
+                <Input
                   className="allinputs"
-                  value={password}
                   placeholder="Password"
-           
-
                   prefix={
                     <Icon
-                      type="lock"
+                      type="user"
                       style={{ color: "rgba(0,0,0,.25)" }}
                       className="iconMarginCorrection"
                     />
                   }
-                  onChange = {(event) => onChangeHandler(event)}
+                  
                 />
               </Row>
+              
               <Row className="inputContainers">
                 <Col>
-                <Link href="dashboard/prdocuts">
                   <Button
                     type="primary"
                     className="submit-button"
-                   >
+                    >
                     Login
                   </Button>
-                  </Link>
                 </Col>
                 <Col>
-                <Link href ="forgotpassword">
+                <Link href= "login">
                   <Button
-                    className="submit-button"
-                  
-                    >
-                      Forgot Password
+                
+                    className="submit-button">
+                     Forgotpassword
                     </Button>
                     </Link>
                    </Col>
                    <Row>
-                    <Link href='register'>
-                      Create new account
-                      ? 
-                    </Link>
+                      <a href="register"> Create account?</a>
                    </Row>
               </Row>
             </Card>
@@ -100,5 +71,4 @@ return (
   </div>
       )
     }
-
 export default (login)  
