@@ -1,15 +1,57 @@
-import React from 'react';
 import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
 import Icon from "@ant-design/icons";
 import Link from "next/link"
-import {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import firebase from '../utils/firebase-config';
- 
 
 const register =() =>{
-  
-console.log(firebase.name);
-console.log(firebase.database());
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [hasAccount, setHasAccont] = useState(false);
+
+  const clearErrors = () => {
+    setEmailError('');
+    setPasswordError('');
+  }
+ 
+  const handleSignup = () => {
+    clearErrors();
+     firebase
+     .auth()
+     .createUserWithEmailAndPassword(email,password)
+     .catch((err) => {
+       switch (err.code){
+         case "auth/invalid-email":
+         case "auth/user-disabled":
+         case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+         case "auth/user-not-found":
+            setEmailError(err.message);
+            break;
+       }
+       
+     });
+  }
+
+  const authListener = () => {
+      firebase.auth().onAuthStateChanged(user => {
+        if(user){
+          setUser(user);
+        }
+        else{
+          setUser(""); 
+        }
+      });
+  };
+
+  useEffect(()=>{
+    authListener();
+  },[]);
+
   return (
    
   <div className="px-80 py-52 ">
@@ -92,3 +134,7 @@ console.log(firebase.database());
     }
     
 export default (register)  
+
+function newFunction(setUser: React.Dispatch<React.SetStateAction<string>>, user) {
+  setUser(user);
+}

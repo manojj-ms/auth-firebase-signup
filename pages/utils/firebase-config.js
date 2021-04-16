@@ -1,7 +1,7 @@
 
-import * as firebase from "firebase";
+import firebase from "firebase";
 
-const config = {
+const firebaseConfig = {
   apiKey: "AIzaSyAPhp8qyZf01raqMw8Ge6HtoUD9t80aGgo",
   authDomain: "kanishka-cards-cb85c.firebaseapp.com",
   databaseURL: "https://kanishka-cards-cb85c-default-rtdb.firebaseio.com",
@@ -12,4 +12,6 @@ const config = {
   measurementId: "G-ZSP5L7J8NM"
 };
 
-export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();
+const fire = firebase.initializeApp(firebaseConfig);
+
+export default fire;
