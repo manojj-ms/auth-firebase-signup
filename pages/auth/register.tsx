@@ -16,6 +16,11 @@ const register =() =>{
     setEmailError('');
     setPasswordError('');
   }
+
+  const clearInputs = () => {
+    setEmail('');
+    setPassword('');
+  }
  
   const handleSignup = () => {
     clearErrors();
@@ -39,6 +44,7 @@ const register =() =>{
 
   const authListener = () => {
       firebase.auth().onAuthStateChanged(user => {
+        clearInputs();
         if(user){
           setUser(user);
         }
@@ -65,7 +71,10 @@ const register =() =>{
                 <Input
                   className="allinputs"
                   type='text'
+                  required
                   placeholder="Email Address"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                prefix={
                     <Icon
                       type="user"
@@ -80,6 +89,9 @@ const register =() =>{
                 <Input.Password
                   className="allinputs"
                   placeholder="Password"
+                  required
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
             prefix={
                     <Icon
                       type="lock"
@@ -110,7 +122,7 @@ const register =() =>{
                   <Button
                     type="primary"
                     className="submit-button"
-                   
+                    onClick={handleSignup}
                     >
                    Register
                   </Button>

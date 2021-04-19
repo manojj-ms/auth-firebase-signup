@@ -1,17 +1,16 @@
 
-import firebase from "firebase";
+import firebase from "firebase/app"
+import 'firebase/auth'
 
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyAPhp8qyZf01raqMw8Ge6HtoUD9t80aGgo",
-  authDomain: "kanishka-cards-cb85c.firebaseapp.com",
-  databaseURL: "https://kanishka-cards-cb85c-default-rtdb.firebaseio.com",
-  projectId: "kanishka-cards-cb85c",
-  storageBucket: "kanishka-cards-cb85c.appspot.com",
-  messagingSenderId: "323096827693",
-  appId: "1:323096827693:web:627c8fe8e680528a9ce5a4",
-  measurementId: "G-ZSP5L7J8NM"
+  apiKey: "AIzaSyBYBwaYFYPV59xq_RvVBtaM3ekyasRHzk4",
+  authDomain: "mk-cards-ff546.firebaseapp.com",
+  projectId: "mk-cards-ff546",
+  storageBucket: "mk-cards-ff546.appspot.com",
+  messagingSenderId: "87455246557",
+  appId: "1:87455246557:web:c32f0909a24c49db2ad334",
+  measurementId: "G-DYZ35FH83W"
 };
 
-const fire = firebase.initializeApp(firebaseConfig);
-
-export default fire;
+export default !firebase.apps.length ? firebase.initializeApp(firebaseConfig) : firebase.app();
