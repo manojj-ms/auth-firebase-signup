@@ -1,152 +1,141 @@
-import { Row,Col,Card,Input, Button, Checkbox } from 'antd';
+import { Row, Col, Card, Input, Button, Checkbox, Form } from 'antd';
 import Icon from "@ant-design/icons";
 import Link from "next/link"
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect, useRef } from 'react'
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import firebase from '../utils/firebase-config';
+import { useAuth } from '../contexts/AuthContext';
+const register = (props: any) => {
 
-const register =() =>{
-  const [user, setUser] = useState('');
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
-  const [hasAccount, setHasAccont] = useState(false);
+  const [confirmpassword, setConfirmPassword] = useState('');
 
-  const clearErrors = () => {
-    setEmailError('');
-    setPasswordError('');
+
+  const handleSignUp = () => {
+    firebase.auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then()
   }
 
-  const clearInputs = () => {
-    setEmail('');
-    setPassword('');
-  }
- 
-  const handleSignup = () => {
-    clearErrors();
-     firebase
-     .auth()
-     .createUserWithEmailAndPassword(email,password)
-     .catch((err) => {
-       switch (err.code){
-         case "auth/invalid-email":
-         case "auth/user-disabled":
-         case "auth/user-not-found":
-            setEmailError(err.message);
-            break;
-         case "auth/user-not-found":
-            setEmailError(err.message);
-            break;
-       }
-       
-     });
+  const handleEmail = (event: any) => {
+    setEmail(event.target.value)
   }
 
-  const authListener = () => {
-      firebase.auth().onAuthStateChanged(user => {
-        clearInputs();
-        if(user){
-          setUser(user);
-        }
-        else{
-          setUser(""); 
-        }
-      });
-  };
+  const handlePassword = (event: any) => {
+    setPassword(event.target.value)
+  }
 
-  useEffect(()=>{
-    authListener();
-  },[]);
+  const handleConfirmPassword = (event: any) => {
+    setConfirmPassword(event.target.value)
+  }
+
+  const handleSubmit = (values: any) => {
+    console.log('Received values of form: ', values);
+  }
 
   return (
-   
-  <div className="px-80 py-52 ">
-     <Row gutter={16}>
+
+    <div className="px-80 py-52 ">
+      <Form onFinish={handleSubmit}>
+        <Row gutter={16}>
           <Col>
             <Card
-              title="Dealer Management System -Register"
+              title="Dealer Management System - Register"
               style={{ width: 400 }}
             >
-              <Row className="inputContainers">
+              <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
                 <Input
                   className="allinputs"
-                  type='text'
-                  required
+                  type='email'
                   placeholder="Email Address"
+                  onChange={handleEmail}
                   value={email}
-                  onChange={(e)=>setEmail(e.target.value)}
-               prefix={
+                  required
+
+                  prefix={
                     <Icon
                       type="user"
                       style={{ color: "rgba(0,0,0,.25)" }}
                       className="iconMarginCorrection"
                     />
                   }
-                  
+
                 />
-              </Row>
-              <Row className="inputContainers">
-                <Input.Password
-                  className="allinputs"
-                  placeholder="Password"
-                  required
-                  value={password}
-                  onChange={(e)=>setPassword(e.target.value)}
-            prefix={
-                    <Icon
-                      type="lock"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                      className="iconMarginCorrection"
-                    />
-                  }
-               
-                />
-              </Row>
-              <Row className="inputContainers">
-                <Input.Password
-                  className="allinputs"
-                  placeholder="Confirm Password"
-                 
-                  prefix={
-                    <Icon
-                      type="lock"
-                      style={{ color: "rgba(0,0,0,.25)" }}
-                      className="iconMarginCorrection"
-                    />
-                  }
-            
-                />
-              </Row>
-              <Row className="inputContainers">
-                <Col>
-                  <Button
-                    type="primary"
-                    className="submit-button"
-                    onClick={handleSignup}
+              </Form.Item>
+              <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
+                <Row className="inputContainers">
+                  <Input.Password
+                    className="allinputs"
+                    placeholder="Password"
+                    type="password"
+                    onChange={handlePassword}
+                    value={password}
+                    required
+                    prefix={
+                      <Icon
+                        type="lock"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                        className="iconMarginCorrection"
+                      />
+                    }
+
+                  />
+                </Row>
+              </Form.Item>
+
+              <Form.Item name="confirmpassword" rules={[{ required: true, message: 'Please input your confirm password!' }]}>
+                <Row className="inputContainers">
+                  <Input.Password
+                    className="allinputs"
+                    placeholder="Confirm Password"
+                    onChange={handleConfirmPassword}
+                    value={confirmpassword}
+                    required
+                    prefix={
+                      <Icon
+                        type="lock"
+                        style={{ color: "rgba(0,0,0,.25)" }}
+                        className="iconMarginCorrection"
+                      />
+                    }
+
+                  />
+                </Row>
+              </Form.Item>
+
+              <Form.Item>
+                <Row className="inputContainers">
+                  <Col>
+                    <Button
+                      type="primary"
+                      className="submit-button"
+
                     >
-                   Register
+                      Register
                   </Button>
-                </Col>
-                <Col>
-                <Link href ="login">
-                  <Button
-                    className="submit-button"
-                  
-                    >
-                      Back to login 
+                  </Col>
+                  <Col>
+
+                    <Link href="login">
+                      <Button
+                        className="submit-button"
+
+                      >
+                        Back to login
                     </Button>
                     </Link>
-                   </Col>
-              </Row>
+                  </Col>
+                </Row>
+              </Form.Item>
+
             </Card>
           </Col>
         </Row>
-  </div>
-      )
-    }
-    
-export default (register)  
-
-function newFunction(setUser: React.Dispatch<React.SetStateAction<string>>, user) {
-  setUser(user);
+      </Form>
+    </div>
+  )
 }
+
+export default (register)

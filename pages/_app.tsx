@@ -3,10 +3,10 @@ import 'tailwindcss/tailwind.css'
 import App from 'next/app'
 
 import DashboardLayout from '../layout/dashboard';
+import { useState } from 'react';
 class MyApp extends App {
   render() {
     const { Component, pageProps, router } = this.props
-
     if (router.pathname.startsWith('/dashboard')) {
       return (
         <DashboardLayout> 
@@ -18,7 +18,7 @@ class MyApp extends App {
     return (
       <Component {...pageProps}></Component>
     )
-
+  
   }
 }
 export default MyApp
