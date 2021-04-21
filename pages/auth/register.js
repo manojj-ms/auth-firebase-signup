@@ -1,12 +1,10 @@
+import React, { useRef, useState, useEffect } from "react"
 import { Row, Col, Card, Input, Button, Checkbox, Form } from 'antd';
 import Icon from "@ant-design/icons";
 import Link from "next/link"
-import React, { useState, useEffect, useRef } from 'react'
-import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
-import firebase from '../utils/firebase-config';
-import { useAuth } from '../contexts/AuthContext';
-const register = (props: any) => {
+import { useAuth } from "../contexts/AuthContext"
 
+export default function Signup() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
@@ -14,17 +12,18 @@ const register = (props: any) => {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(e: { preventDefault: () => void; }) {
+  async function handleSubmit(e) {
     e.preventDefault()
-
-    if (passwordRef.current!== passwordConfirmRef.current) {
+      
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
 
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current, passwordRef.current)
+      await signup(emailRef.current.value, passwordRef.current.value)
+      
     } catch {
       setError("Failed to create an account")
     }
@@ -32,11 +31,10 @@ const register = (props: any) => {
     setLoading(false)
   }
 
-
   return (
-
-    <div className="px-80 py-52 ">
-      <Form onFinish={handleSubmit}>
+    <>
+        <div className="px-80 py-52 ">
+      <Form onFinish={(e) => handleSubmit(e)}>
         <Row gutter={16}>
           <Col>
             <Card
@@ -87,6 +85,7 @@ const register = (props: any) => {
                   <Input.Password
                     className="allinputs"
                     placeholder="Confirm Password"
+                    type="password"
                     ref={passwordConfirmRef}
                     required
                     prefix={
@@ -107,7 +106,8 @@ const register = (props: any) => {
                     <Button
                       type="primary"
                       className="submit-button"
-
+                      htmlType="submit"
+                      disabled={loading}
                     >
                       Register
                   </Button>
@@ -117,7 +117,7 @@ const register = (props: any) => {
                     <Link href="login">
                       <Button
                         className="submit-button"
-
+                         
                       >
                         Back to login
                     </Button>
@@ -131,8 +131,6 @@ const register = (props: any) => {
         </Row>
       </Form>
     </div>
+    </>
   )
 }
-
-export default (register)
-
