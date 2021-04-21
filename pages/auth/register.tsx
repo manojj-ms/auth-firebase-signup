@@ -7,33 +7,31 @@ import firebase from '../utils/firebase-config';
 import { useAuth } from '../contexts/AuthContext';
 const register = (props: any) => {
 
+  const emailRef = useRef()
+  const passwordRef = useRef()
+  const passwordConfirmRef = useRef()
+  const { signup } = useAuth()
+  const [error, setError] = useState("")
+  const [loading, setLoading] = useState(false)
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmpassword, setConfirmPassword] = useState('');
+  async function handleSubmit(e: { preventDefault: () => void; }) {
+    e.preventDefault()
 
+    if (passwordRef.current!== passwordConfirmRef.current) {
+      return setError("Passwords do not match")
+    }
 
-  const handleSignUp = () => {
-    firebase.auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then()
+    try {
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current, passwordRef.current)
+    } catch {
+      setError("Failed to create an account")
+    }
+
+    setLoading(false)
   }
 
-  const handleEmail = (event: any) => {
-    setEmail(event.target.value)
-  }
-
-  const handlePassword = (event: any) => {
-    setPassword(event.target.value)
-  }
-
-  const handleConfirmPassword = (event: any) => {
-    setConfirmPassword(event.target.value)
-  }
-
-  const handleSubmit = (values: any) => {
-    console.log('Received values of form: ', values);
-  }
 
   return (
 
@@ -50,10 +48,9 @@ const register = (props: any) => {
                   className="allinputs"
                   type='email'
                   placeholder="Email Address"
-                  onChange={handleEmail}
-                  value={email}
+                  ref={emailRef}
                   required
-
+                  
                   prefix={
                     <Icon
                       type="user"
@@ -64,14 +61,14 @@ const register = (props: any) => {
 
                 />
               </Form.Item>
+              
               <Form.Item name="password" rules={[{ required: true, message: 'Please input your password!' }]}>
                 <Row className="inputContainers">
                   <Input.Password
                     className="allinputs"
                     placeholder="Password"
                     type="password"
-                    onChange={handlePassword}
-                    value={password}
+                    ref={passwordRef}
                     required
                     prefix={
                       <Icon
@@ -85,13 +82,12 @@ const register = (props: any) => {
                 </Row>
               </Form.Item>
 
-              <Form.Item name="confirmpassword" rules={[{ required: true, message: 'Please input your confirm password!' }]}>
+            <Form.Item name="confirmpassword" rules={[{ required: true, message: 'Please input your confirm password!' }]}>
                 <Row className="inputContainers">
                   <Input.Password
                     className="allinputs"
                     placeholder="Confirm Password"
-                    onChange={handleConfirmPassword}
-                    value={confirmpassword}
+                    ref={passwordConfirmRef}
                     required
                     prefix={
                       <Icon
@@ -139,3 +135,4 @@ const register = (props: any) => {
 }
 
 export default (register)
+
