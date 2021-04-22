@@ -12,8 +12,7 @@ export default function Signup() {
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit() {
       
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
@@ -34,7 +33,7 @@ export default function Signup() {
   return (
     <>
         <div className="px-80 py-52 ">
-      <Form onFinish={(e) => handleSubmit(e)}>
+      <Form onFinish={handleSubmit}>
         <Row gutter={16}>
           <Col>
             <Card
@@ -103,14 +102,15 @@ export default function Signup() {
               <Form.Item>
                 <Row className="inputContainers">
                   <Col>
-                    <Button
-                      type="primary"
-                      className="submit-button"
-                      htmlType="submit"
-                      disabled={loading}
-                    >
-                      Register
-                  </Button>
+                      <Button
+                        type="primary"
+                        className="submit-button"
+                        //type="submit"
+                        htmlType="submit"
+                        //disabled={loading}
+                      >
+                        Register
+                    </Button>
                   </Col>
                   <Col>
 

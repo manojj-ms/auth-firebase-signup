@@ -111,7 +111,7 @@ const columns = [
         },
        ],
     
-      onFilter: (value, record) => record.category.indexOf(value) === 0,
+      onFilter: (value: any, record: { category: string | any[]; }) => record.category.indexOf(value) === 0,
       sorter: (a, b) => a.category.length - b.category.length,
       sortDirections: ['descend', 'ascend'],
     },
@@ -136,7 +136,7 @@ const columns = [
     },
   ];
 
-function onChange( filters, sorter) {
+function onChange( filters: any, sorter: any) {
   console.log('params', filters, sorter);
 }
 
