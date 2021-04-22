@@ -4,7 +4,7 @@ import Icon from "@ant-design/icons";
 import Link from "next/link"
 import { useAuth } from "../contexts/AuthContext"
 import { useForm } from 'react-hook-form'; 
-
+import router, { useRouter } from 'next/router';
 export default function Signup() {
   const [form] = Form.useForm();
   const emailRef = useRef()
@@ -24,7 +24,7 @@ export default function Signup() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-      
+      router.push('/dashboard/products');
     } catch {
       setError("Failed to create an account")
     }
