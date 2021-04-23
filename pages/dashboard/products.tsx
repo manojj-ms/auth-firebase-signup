@@ -1,5 +1,8 @@
 import React from 'react';
-import { Table, Tag, Space, Button } from 'antd';
+import { Table, Tag, Space, Button,Modal,Input,Select} from 'antd';
+import { useState } from "react"
+import Icon from "@ant-design/icons";
+
 
 const dataSource = [{
    key: '1',
@@ -39,16 +42,14 @@ const dataSource = [{
     name: 'John',
     category: "Banners",
     created_at:"May 15",
-    
   },
   {
     key: '6',
     id:'6',
-    name: 'Devi',
+    name: 'Devil',
     category: "Banners",
     created_at:"Mar 31",
-    
-  },
+    },
 ];
   
 
@@ -59,8 +60,6 @@ const columns = [
        key:'id',
        sorter: (a, b) => a.id - b.id,
      },
-
-
     {
       title: 'Name',
       dataIndex: 'name',
@@ -111,7 +110,7 @@ const columns = [
         },
        ],
     
-      onFilter: (value: any, record: { category: string | any[]; }) => record.category.indexOf(value) === 0,
+      onFilter: (value, record) => record.category.indexOf(value) === 0,
       sorter: (a, b) => a.category.length - b.category.length,
       sortDirections: ['descend', 'ascend'],
     },
@@ -136,15 +135,57 @@ const columns = [
     },
   ];
 
-function onChange( filters: any, sorter: any) {
+
+function onChange( filters, sorter) {
   console.log('params', filters, sorter);
 }
 
 
 
 const sort = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleUpdate = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
     return(
         <div>
+          <Button type="primary" onClick={showModal}>
+            Add Dealer
+      </Button>
+      <Modal title="Add Dealer" visible={isModalVisible} onOk={handleUpdate} onCancel={handleCancel}>
+      <div>
+            <Input
+              className="all-inputs"
+              size="large"
+              placeholder="Enter Id"
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              
+            />
+            <Input
+              className="all-inputs"
+              size="large"
+              placeholder="Enter Name"
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              
+            />
+            <Input
+              className="all-inputs"
+              size="large"
+              placeholder="Enter category"
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              
+            />
+            
+            
+          </div>
+      </Modal>
             <Table dataSource={dataSource} onChange={onChange} columns={columns}  className="pt-5 p-6 w-auto content-center" />
         </div>
     )
