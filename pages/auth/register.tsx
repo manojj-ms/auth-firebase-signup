@@ -50,7 +50,7 @@ export default function Signup() {
                             className="block border border-grey-light w-full p-3 rounded mb-4"
                             name="email"
                             placeholder="Email" />
-    
+                        
                         <input 
                             type="password"
                             ref={passwordRef}

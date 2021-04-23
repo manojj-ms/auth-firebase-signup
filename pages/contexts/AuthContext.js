@@ -24,7 +24,7 @@ export function AuthProvider({ children }) {
   }
 
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
+    return firebase.auth().sendPasswordResetEmail(email)
   }
 
   function updateEmail(email) {
