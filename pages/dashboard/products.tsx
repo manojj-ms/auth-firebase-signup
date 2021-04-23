@@ -2,7 +2,8 @@ import React from 'react';
 import { Table, Tag, Space, Button,Modal,Input,Select} from 'antd';
 import { useState } from "react"
 import Icon from "@ant-design/icons";
-
+import {db} from '../utils/firebase-config';
+import { useEffect } from 'react';
 
 const dataSource = [{
    key: '1',
@@ -143,6 +144,65 @@ function onChange( filters, sorter) {
 
 
 const sort = () => {
+
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+  const [open, setOpen] = useState(false);
+  const [update, setUpdate] = useState('');
+  const [toUpdateId, setToUpdateId] = useState('');
+
+
+  useEffect(() => {
+    console.log('useEffect Hook!!!');
+
+    db.collection('todos').orderBy('datetime', 'desc').onSnapshot(snapshot => {
+      console.log('Firebase Snap!');
+      setTodos(snapshot.docs.map(doc => {
+        return {
+          id: doc.id,
+          name: doc.data().todo,
+          datatime: doc.data().datatime
+        }
+      }))
+    })
+
+  }, []);
+
+  const addTodo = (event) => {
+    event.preventDefault();
+    db.collection('todos').add({
+      todo: input,
+      datetime: firebase.firestore.FieldValue.serverTimestamp()
+    })
+    setInput('');
+  }
+
+  const deleteTodo = (id) => {
+    db.collection('todos').doc(id).delete().then(res => {
+      console.log('Deleted!', res);
+    });
+  }
+
+  const openUpdateDialog = (todo) => {
+    setOpen(true);
+    setToUpdateId(todo.id);
+    setUpdate(todo.name);
+  }
+
+  const editTodo = () => {
+    db.collection('todos').doc(toUpdateId).update({
+      todo: update
+    });
+    setOpen(false);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {
     setIsModalVisible(true);
